@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+
+<!-- <mapper namespace="com.haier.cosmoplat.microservice.data.repository.CosmoViewListMapper"> -->
+<mapper namespace="com.haier.prometheus.dao.CosmoViewListDao">
+
+	<resultMap id="RM_CosmoViewList" type="com.haier.prometheus.entity.CosmoViewList">
+        <result property="id" column="id"/>
+        <result property="platformId" column="platform_id"/>
+        <result property="indicator1" column="indicator_1"/>
+        <result property="indicator2" column="indicator_2"/>
+        <result property="indicator3" column="indicator_3"/>
+        <result property="dataCurrentTotal" column="data_current_total"/>
+        <result property="dataUnit" column="data_unit"/>
+        <result property="targetValue" column="target_value"/>
+        <result property="createDatetime" column="create_datetime"/>
+        <result property="remark" column="remark"/>
+        <result property="defination" column="defination"/>
+        <result property="caculateMethod" column="caculate_method"/>
+        <result property="modelPlatform" column="model_platform"/>
+        <result property="doublePlatform" column="double_platform"/>
+        <result property="dataMonth1" column="data_month_1"/>
+        <result property="dataMonth2" column="data_month_2"/>
+        <result property="dataMonth3" column="data_month_3"/>
+        <result property="dataMonth4" column="data_month_4"/>
+        <result property="dataMonth5" column="data_month_5"/>
+        <result property="dataMonth6" column="data_month_6"/>
+        <result property="dataMonth7" column="data_month_7"/>
+        <result property="dataMonth8" column="data_month_8"/>
+        <result property="dataMonth9" column="data_month_9"/>
+        <result property="dataMonth10" column="data_month_10"/>
+        <result property="dataMonth11" column="data_month_11"/>
+        <result property="dataMonth12" column="data_month_12"/>
+        <result property="updateDatetime" column="update_datetime"/>
+	</resultMap>
+	
+	<!-- 用于select查询公用抽取的列 -->
+	<sql id="columns">
+	    <![CDATA[
+		id,platform_id,indicator_1,indicator_2,indicator_3,data_current_total,data_unit,target_value,create_datetime,remark,defination,caculate_method,model_platform,double_platform,data_month_1,data_month_2,data_month_3,data_month_4,data_month_5,data_month_6,data_month_7,data_month_8,data_month_9,data_month_10,data_month_11,data_month_12,update_datetime
+	    ]]>
+	</sql>
+
+	<!-- useGeneratedKeys="true" keyProperty="xxx" for sqlserver and mysql -->
+	<insert id="insert" useGeneratedKeys="true" keyProperty="id">
+    <![CDATA[
+        INSERT INTO cosmo_view_list (
+        	id ,
+        	platform_id ,
+        	indicator_1 ,
+        	indicator_2 ,
+        	indicator_3 ,
+        	data_current_total ,
+        	data_unit ,
+        	target_value ,
+        	create_datetime ,
+        	remark ,
+        	defination ,
+        	caculate_method ,
+        	model_platform ,
+        	double_platform ,
+        	data_month_1 ,
+        	data_month_2 ,
+        	data_month_3 ,
+        	data_month_4 ,
+        	data_month_5 ,
+        	data_month_6 ,
+        	data_month_7 ,
+        	data_month_8 ,
+        	data_month_9 ,
+        	data_month_10 ,
+        	data_month_11 ,
+        	data_month_12 ,
+        	update_datetime 
+        ) VALUES (
+        	#{id} ,
+        	#{platformId} ,
+        	#{indicator1} ,
+        	#{indicator2} ,
+        	#{indicator3} ,
+        	#{dataCurrentTotal} ,
+        	#{dataUnit} ,
+        	#{targetValue} ,
+        	#{createDatetime} ,
+        	#{remark} ,
+        	#{defination} ,
+        	#{caculateMethod} ,
+        	#{modelPlatform} ,
+        	#{doublePlatform} ,
+        	#{dataMonth1} ,
+        	#{dataMonth2} ,
+        	#{dataMonth3} ,
+        	#{dataMonth4} ,
+        	#{dataMonth5} ,
+        	#{dataMonth6} ,
+        	#{dataMonth7} ,
+        	#{dataMonth8} ,
+        	#{dataMonth9} ,
+        	#{dataMonth10} ,
+        	#{dataMonth11} ,
+        	#{dataMonth12} ,
+        	#{updateDatetime} 
+        )
+    ]]>
+		<!--	
+			oracle: order="BEFORE" SELECT sequenceName.nextval AS ID FROM DUAL 
+			DB2: order="BEFORE"" values nextval for sequenceName
+		<selectKey resultType="java.lang.Long" order="BEFORE" keyProperty="userId">
+			SELECT sequenceName.nextval AS ID FROM DUAL 
+        </selectKey>
+		-->
+	</insert>
+    
+	<update id="update" >
+    <![CDATA[
+        UPDATE cosmo_view_list SET
+	        platform_id = #{platformId} ,
+	        indicator_1 = #{indicator1} ,
+	        indicator_2 = #{indicator2} ,
+	        indicator_3 = #{indicator3} ,
+	        data_current_total = #{dataCurrentTotal} ,
+	        data_unit = #{dataUnit} ,
+	        target_value = #{targetValue} ,
+	        create_datetime = #{createDatetime} ,
+	        remark = #{remark} ,
+	        defination = #{defination} ,
+	        caculate_method = #{caculateMethod} ,
+	        model_platform = #{modelPlatform} ,
+	        double_platform = #{doublePlatform} ,
+	        data_month_1 = #{dataMonth1} ,
+	        data_month_2 = #{dataMonth2} ,
+	        data_month_3 = #{dataMonth3} ,
+	        data_month_4 = #{dataMonth4} ,
+	        data_month_5 = #{dataMonth5} ,
+	        data_month_6 = #{dataMonth6} ,
+	        data_month_7 = #{dataMonth7} ,
+	        data_month_8 = #{dataMonth8} ,
+	        data_month_9 = #{dataMonth9} ,
+	        data_month_10 = #{dataMonth10} ,
+	        data_month_11 = #{dataMonth11} ,
+	        data_month_12 = #{dataMonth12} ,
+	        update_datetime = #{updateDatetime} 
+        WHERE 
+	        id = #{id} 
+    ]]>
+	</update>
+
+    <delete id="delete">
+    <![CDATA[
+        DELETE FROM cosmo_view_list WHERE
+        id = #{id} 
+    ]]>
+    </delete>
+    
+    <select id="getById" resultMap="RM_CosmoViewList">
+		SELECT <include refid="columns" />
+	    <![CDATA[
+		    FROM cosmo_view_list 
+	        WHERE 
+		        id = #{id} 
+	    ]]>
+	</select>
+	
+	<sql id="findPage_where">
+		<where>	      				
+	       <if test="id != null">
+				AND id = #{id}
+			</if>
+	       <if test="platformId != null">
+				AND platform_id = #{platformId}
+			</if>
+	       <if test="indicator1 != null">
+				AND indicator_1 = #{indicator1}
+			</if>
+	       <if test="indicator2 != null">
+				AND indicator_2 = #{indicator2}
+			</if>
+	       <if test="indicator3 != null">
+				AND indicator_3 = #{indicator3}
+			</if>
+	       <if test="dataCurrentTotal != null">
+				AND data_current_total = #{dataCurrentTotal}
+			</if>
+	       <if test="dataUnit != null">
+				AND data_unit = #{dataUnit}
+			</if>
+	       <if test="targetValue != null">
+				AND target_value = #{targetValue}
+			</if>
+	       <if test="createDatetime != null">
+				AND create_datetime = #{createDatetime}
+			</if>
+	       <if test="remark != null">
+				AND remark = #{remark}
+			</if>
+	       <if test="defination != null">
+				AND defination = #{defination}
+			</if>
+	       <if test="caculateMethod != null">
+				AND caculate_method = #{caculateMethod}
+			</if>
+	       <if test="modelPlatform != null">
+				AND model_platform = #{modelPlatform}
+			</if>
+	       <if test="doublePlatform != null">
+				AND double_platform = #{doublePlatform}
+			</if>
+	       <if test="dataMonth1 != null">
+				AND data_month_1 = #{dataMonth1}
+			</if>
+	       <if test="dataMonth2 != null">
+				AND data_month_2 = #{dataMonth2}
+			</if>
+	       <if test="dataMonth3 != null">
+				AND data_month_3 = #{dataMonth3}
+			</if>
+	       <if test="dataMonth4 != null">
+				AND data_month_4 = #{dataMonth4}
+			</if>
+	       <if test="dataMonth5 != null">
+				AND data_month_5 = #{dataMonth5}
+			</if>
+	       <if test="dataMonth6 != null">
+				AND data_month_6 = #{dataMonth6}
+			</if>
+	       <if test="dataMonth7 != null">
+				AND data_month_7 = #{dataMonth7}
+			</if>
+	       <if test="dataMonth8 != null">
+				AND data_month_8 = #{dataMonth8}
+			</if>
+	       <if test="dataMonth9 != null">
+				AND data_month_9 = #{dataMonth9}
+			</if>
+	       <if test="dataMonth10 != null">
+				AND data_month_10 = #{dataMonth10}
+			</if>
+	       <if test="dataMonth11 != null">
+				AND data_month_11 = #{dataMonth11}
+			</if>
+	       <if test="dataMonth12 != null">
+				AND data_month_12 = #{dataMonth12}
+			</if>
+	       <if test="updateDatetime != null">
+				AND update_datetime = #{updateDatetime}
+			</if>
+		</where>
+	</sql>
+		
+    <select id="count" resultType="long">
+        SELECT count(id) FROM cosmo_view_list 
+		<include refid="findPage_where"/>    
+    </select>
+
+    <select id="findAll" resultMap="RM_CosmoViewList">
+    SELECT <include refid="columns"/> FROM cosmo_view_list where 1=1
+    </select>
+
+    <select id="select" resultMap="RM_CosmoViewList">
+    SELECT <include refid="columns"/> FROM cosmo_view_list where 1=1
+    <include refid="findPage_where"/> limit 0,1
+    </select>
+
+    <select id="findPage" resultMap="RM_CosmoViewList">
+    	SELECT <include refid="columns" />
+	    FROM cosmo_view_list 
+		<include refid="findPage_where"/>
+    </select>
+	
+	<select id="selectAll" resultMap="RM_CosmoViewList">
+		SELECT <include refid="columns" />
+		FROM cosmo_view_list
+		ORDER BY indicator_1,indicator_2,indicator_3
+	</select>
+
+	<select id="getByIds" resultMap="RM_CosmoViewList">
+		SELECT <include refid="columns" />
+		FROM cosmo_view_list
+		WHERE id
+		IN
+		<foreach collection="viewIdList" item="typeId" open="(" close=")" separator="," index="index">
+			#{typeId}
+		</foreach>
+	</select>
+
+	
+</mapper>
+

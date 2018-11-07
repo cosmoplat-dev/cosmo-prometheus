@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+
+<!-- <mapper namespace="com.haier.cosmoplat.microservice.databig.repository.CosmoRobotRuleMapper"> -->
+<mapper namespace="com.haier.prometheus.dao.CosmoRobotRuleDao">
+
+	<resultMap id="RM_CosmoRobotRule" type="com.haier.prometheus.entity.CosmoRobotRule">
+        <result property="id" column="id"/>
+        <result property="viewId" column="view_id"/>
+        <result property="updateRate" column="update_rate"/>
+        <result property="max" column="max"/>
+        <result property="min" column="min"/>
+		<result property="type" column="type"/>
+		<result property="value" column="value"/>
+	</resultMap>
+	
+	<!-- 用于select查询公用抽取的列 -->
+	<sql id="columns">
+	    <![CDATA[
+		id,view_id,update_rate,max,min,type,value
+	    ]]>
+	</sql>
+
+	<!-- useGeneratedKeys="true" keyProperty="xxx" for sqlserver and mysql -->
+	<insert id="insert" useGeneratedKeys="true" keyProperty="id">
+    <![CDATA[
+        INSERT INTO cosmo_robot_rule (
+        	id ,
+        	view_id ,
+        	update_rate ,
+        	max ,
+        	min ,
+        	type ,
+        	value
+        ) VALUES (
+        	#{id} ,
+        	#{viewId} ,
+        	#{updateRate} ,
+        	#{max} ,
+        	#{min} ,
+        	#{type} ,
+        	#{value}
+        )
+    ]]>
+		<!--	
+			oracle: order="BEFORE" SELECT sequenceName.nextval AS ID FROM DUAL 
+			DB2: order="BEFORE"" values nextval for sequenceName
+		<selectKey resultType="java.lang.Long" order="BEFORE" keyProperty="userId">
+			SELECT sequenceName.nextval AS ID FROM DUAL 
+        </selectKey>
+		-->
+	</insert>
+    
+	<update id="update" >
+    <![CDATA[
+        UPDATE cosmo_robot_rule SET
+	        view_id = #{viewId} ,
+	        update_rate = #{updateRate} ,
+	        max = #{max} ,
+	        min = #{min} ,
+	        type = #{type},
+	        value = #{value}
+        WHERE 
+	        id = #{id} 
+    ]]>
+	</update>
+
+    <delete id="delete">
+    <![CDATA[
+        DELETE FROM cosmo_robot_rule WHERE
+        id = #{id} 
+    ]]>
+    </delete>
+    
+    <select id="getById" resultMap="RM_CosmoRobotRule">
+		SELECT <include refid="columns" />
+	    <![CDATA[
+		    FROM cosmo_robot_rule 
+	        WHERE 
+		        id = #{id} 
+	    ]]>
+	</select>
+	
+	<sql id="findPage_where">
+		<where>	      				
+	       <if test="id != null">
+				AND id = #{id}
+			</if>
+	       <if test="viewId != null">
+				AND view_id = #{viewId}
+			</if>
+	       <if test="updateRate != null">
+				AND update_rate = #{updateRate}
+			</if>
+	       <if test="max != null">
+				AND max = #{max}
+			</if>
+	       <if test="min != null">
+				AND min = #{min}
+			</if>
+			<if test="type != null">
+				AND type = #{type}
+			</if>
+			<if test="value != null">
+				AND value = #{value}
+			</if>
+		</where>
+	</sql>
+		
+    <select id="count" resultType="long">
+        SELECT count(id) FROM cosmo_robot_rule 
+		<include refid="findPage_where"/>    
+    </select>
+
+    <select id="findAll" resultMap="RM_CosmoRobotRule">
+    SELECT <include refid="columns"/> FROM cosmo_robot_rule where 1=1
+    </select>
+
+    <select id="select" resultMap="RM_CosmoRobotRule">
+    SELECT <include refid="columns"/> FROM cosmo_robot_rule where 1=1
+    <include refid="findPage_where"/> limit 0,1
+    </select>
+
+    <select id="findPage" resultMap="RM_CosmoRobotRule">
+    	SELECT <include refid="columns" />
+	    FROM cosmo_robot_rule 
+		<include refid="findPage_where"/>
+    </select>
+
+</mapper>
+

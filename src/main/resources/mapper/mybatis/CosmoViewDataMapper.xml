@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+
+<!-- <mapper namespace="com.haier.cosmoplat.microservice.databig.repository.CosmoViewDataMapper"> -->
+<mapper namespace="com.haier.prometheus.dao.CosmoViewDataDao">
+
+	<resultMap id="RM_CosmoViewData" type="com.haier.prometheus.entity.CosmoViewData">
+        <result property="id" column="id"/>
+        <result property="viewId" column="view_id"/>
+        <result property="dataMonth1" column="data_month_1"/>
+        <result property="dataMonth2" column="data_month_2"/>
+        <result property="dataMonth3" column="data_month_3"/>
+        <result property="dataMonth4" column="data_month_4"/>
+        <result property="dataMonth5" column="data_month_5"/>
+        <result property="dataMonth6" column="data_month_6"/>
+        <result property="dataMonth7" column="data_month_7"/>
+        <result property="dataMonth8" column="data_month_8"/>
+        <result property="dataMonth9" column="data_month_9"/>
+        <result property="dataMonth10" column="data_month_10"/>
+        <result property="dataMonth11" column="data_month_11"/>
+        <result property="dataMonth12" column="data_month_12"/>
+        <result property="dataCurrentTotal" column="data_current_total"/>
+        <result property="dataUnit" column="data_unit"/>
+        <result property="updateDatetime" column="update_datetime"/>
+	</resultMap>
+	
+	<!-- 用于select查询公用抽取的列 -->
+	<sql id="columns">
+	    <![CDATA[
+		id,view_id,data_month_1,data_month_2,data_month_3,data_month_4,data_month_5,data_month_6,data_month_7,data_month_8,data_month_9,data_month_10,data_month_11,data_month_12,data_current_total,data_unit,update_datetime
+	    ]]>
+	</sql>
+
+	<!-- useGeneratedKeys="true" keyProperty="xxx" for sqlserver and mysql -->
+	<insert id="insert" useGeneratedKeys="true" keyProperty="id">
+    <![CDATA[
+        INSERT INTO cosmo_view_data (
+        	id ,
+        	view_id ,
+        	data_month_1 ,
+        	data_month_2 ,
+        	data_month_3 ,
+        	data_month_4 ,
+        	data_month_5 ,
+        	data_month_6 ,
+        	data_month_7 ,
+        	data_month_8 ,
+        	data_month_9 ,
+        	data_month_10 ,
+        	data_month_11 ,
+        	data_month_12 ,
+        	data_current_total ,
+        	data_unit ,
+        	update_datetime 
+        ) VALUES (
+        	#{id} ,
+        	#{viewId} ,
+        	#{dataMonth1} ,
+        	#{dataMonth2} ,
+        	#{dataMonth3} ,
+        	#{dataMonth4} ,
+        	#{dataMonth5} ,
+        	#{dataMonth6} ,
+        	#{dataMonth7} ,
+        	#{dataMonth8} ,
+        	#{dataMonth9} ,
+        	#{dataMonth10} ,
+        	#{dataMonth11} ,
+        	#{dataMonth12} ,
+        	#{dataCurrentTotal} ,
+        	#{dataUnit} ,
+        	#{updateDatetime} 
+        )
+    ]]>
+		<!--	
+			oracle: order="BEFORE" SELECT sequenceName.nextval AS ID FROM DUAL 
+			DB2: order="BEFORE"" values nextval for sequenceName
+		<selectKey resultType="java.lang.Long" order="BEFORE" keyProperty="userId">
+			SELECT sequenceName.nextval AS ID FROM DUAL 
+        </selectKey>
+		-->
+	</insert>
+    
+	<update id="update" >
+    <![CDATA[
+        UPDATE cosmo_view_data SET
+	        view_id = #{viewId} ,
+	        data_month_1 = #{dataMonth1} ,
+	        data_month_2 = #{dataMonth2} ,
+	        data_month_3 = #{dataMonth3} ,
+	        data_month_4 = #{dataMonth4} ,
+	        data_month_5 = #{dataMonth5} ,
+	        data_month_6 = #{dataMonth6} ,
+	        data_month_7 = #{dataMonth7} ,
+	        data_month_8 = #{dataMonth8} ,
+	        data_month_9 = #{dataMonth9} ,
+	        data_month_10 = #{dataMonth10} ,
+	        data_month_11 = #{dataMonth11} ,
+	        data_month_12 = #{dataMonth12} ,
+	        data_current_total = #{dataCurrentTotal} ,
+	        data_unit = #{dataUnit} ,
+	        update_datetime = #{updateDatetime} 
+        WHERE 
+	        id = #{id} 
+    ]]>
+	</update>
+
+    <delete id="delete">
+    <![CDATA[
+        DELETE FROM cosmo_view_data WHERE
+        id = #{id} 
+    ]]>
+    </delete>
+    
+    <select id="getById" resultMap="RM_CosmoViewData">
+		SELECT <include refid="columns" />
+	    <![CDATA[
+		    FROM cosmo_view_data 
+	        WHERE 
+		        id = #{id} 
+	    ]]>
+	</select>
+	
+	<sql id="findPage_where">
+		<where>	      				
+	       <if test="id != null">
+				AND id = #{id}
+			</if>
+	       <if test="viewId != null">
+				AND view_id = #{viewId}
+			</if>
+	       <if test="dataMonth1 != null">
+				AND data_month_1 = #{dataMonth1}
+			</if>
+	       <if test="dataMonth2 != null">
+				AND data_month_2 = #{dataMonth2}
+			</if>
+	       <if test="dataMonth3 != null">
+				AND data_month_3 = #{dataMonth3}
+			</if>
+	       <if test="dataMonth4 != null">
+				AND data_month_4 = #{dataMonth4}
+			</if>
+	       <if test="dataMonth5 != null">
+				AND data_month_5 = #{dataMonth5}
+			</if>
+	       <if test="dataMonth6 != null">
+				AND data_month_6 = #{dataMonth6}
+			</if>
+	       <if test="dataMonth7 != null">
+				AND data_month_7 = #{dataMonth7}
+			</if>
+	       <if test="dataMonth8 != null">
+				AND data_month_8 = #{dataMonth8}
+			</if>
+	       <if test="dataMonth9 != null">
+				AND data_month_9 = #{dataMonth9}
+			</if>
+	       <if test="dataMonth10 != null">
+				AND data_month_10 = #{dataMonth10}
+			</if>
+	       <if test="dataMonth11 != null">
+				AND data_month_11 = #{dataMonth11}
+			</if>
+	       <if test="dataMonth12 != null">
+				AND data_month_12 = #{dataMonth12}
+			</if>
+	       <if test="dataCurrentTotal != null">
+				AND data_current_total = #{dataCurrentTotal}
+			</if>
+	       <if test="dataUnit != null">
+				AND data_unit = #{dataUnit}
+			</if>
+	       <if test="updateDatetime != null">
+				AND update_datetime = #{updateDatetime}
+			</if>
+		</where>
+	</sql>
+		
+    <select id="count" resultType="long">
+        SELECT count(id) FROM cosmo_view_data 
+		<include refid="findPage_where"/>    
+    </select>
+
+    <select id="findAll" resultMap="RM_CosmoViewData">
+    SELECT <include refid="columns"/> FROM cosmo_view_data where 1=1
+    </select>
+
+    <select id="select" resultMap="RM_CosmoViewData">
+    SELECT <include refid="columns"/> FROM cosmo_view_data where 1=1
+    <include refid="findPage_where"/> limit 0,1
+    </select>
+
+    <select id="findPage" resultMap="RM_CosmoViewData">
+    	SELECT <include refid="columns" />
+	    FROM cosmo_view_data 
+		<include refid="findPage_where"/>
+    </select>
+
+	<select id="findByViewId" resultMap="RM_CosmoViewData">
+		SELECT <include refid="columns" />
+		FROM cosmo_view_data
+		WHERE view_id = #{viewId}
+	</select>
+
+	
+</mapper>
+
