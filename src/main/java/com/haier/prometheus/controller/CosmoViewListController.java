@@ -19,7 +19,7 @@ import java.util.Map;
 @RequestMapping("/cosmoViewList")
 public class CosmoViewListController {
 
-
+//注入service
     @Autowired
     CosmoViewListService cosmoViewListService;
 
