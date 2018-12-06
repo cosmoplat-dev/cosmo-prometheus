@@ -16,6 +16,9 @@ import java.lang.reflect.Method;
 import java.time.Duration;
 import java.util.concurrent.atomic.AtomicInteger;
 
+/**
+ * HttpMethodMetric注解 接口数据统计切面类
+ */
 @Aspect
 @Component
 public class HttpMethodAspect {

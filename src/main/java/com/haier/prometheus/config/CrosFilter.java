@@ -10,10 +10,6 @@ import java.io.IOException;
  * 
  * @ClassName: CrosFilter
  * @Description: 处理 OPTIONS 请求
- * @author XS guo
- * @date 2017年7月24日 上午10:25:16
- * @see [相关类/方法]（可选）
- * @since [产品/模块版本] （可选）
  */
 @Component
 public class CrosFilter implements Filter {

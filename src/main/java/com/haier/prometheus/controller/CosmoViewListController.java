@@ -10,8 +10,6 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 @Api(value="CosmoViewList模块-CosmoViewListController")
@@ -19,7 +17,7 @@ import java.util.Map;
 @RequestMapping("/cosmoViewList")
 public class CosmoViewListController {
 
-//注入service
+    //注入service
     @Autowired
     CosmoViewListService cosmoViewListService;
 
